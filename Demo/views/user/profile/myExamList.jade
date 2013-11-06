@@ -1,0 +1,52 @@
+extends /common/layout
+block head
+	title My Profile
+block content
+	h3.marginTop10 My Exams
+	div.row
+		for quizObj in quizList
+			div.col-sm-6.col-md-4
+				if quizObj.isQuizPublished == 'Y'
+					div.panel.panel-success
+						div.panel-heading 
+							b #{quizObj.quizName}
+						div.panel-body
+							table
+								tr
+									td
+										img.img-rounded(src="/img/noimage.gif",alt="Create Exam")
+									td
+										span #{quizObj.quizDescr} #{quizObj.quizDescr}
+							div
+								a.badge.margin5(title="#{quizObj.numberOfQuestions} Questions") #{quizObj.numberOfQuestions} Q
+								span.badge.margin5 #{quizObj.accessCount} views
+							div
+								a.btn.btn-success.btn-xs.margin5 Published	
+								a.btn.btn-primary.btn-xs.margin5(href="/user/createExam?examid=#{quizObj.quizId}") Edit Exam
+				else
+					div.panel.panel-danger(title="This exam is not published")
+						div.panel-heading 
+							b #{quizObj.quizName}
+						div.panel-body
+							table
+								tr
+									td
+										img.img-rounded(src="/img/noimage.gif",alt="Create Exam")
+									td
+										span #{quizObj.quizDescr} #{quizObj.quizDescr}
+							div
+								a.badge.margin5(title="#{quizObj.numberOfQuestions} Questions") #{quizObj.numberOfQuestions} Q
+								span.badge.margin5 #{quizObj.accessCount} views
+							div
+								a.btn.btn-danger.btn-xs.margin5 Not published		
+								a.btn.btn-primary.btn-xs.margin5(href="/user/createExam?examid=#{quizObj.quizId}") Edit Exam
+	div.row
+		div.col-sm-6.col-md-2
+			a(href="/user/myprofile") My Profile	
+		div.col-sm-6.col-md-2
+			a(href="/user/createExam") Create Exam				
+								
+								
+								
+								
+		

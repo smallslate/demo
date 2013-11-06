@@ -1,0 +1,60 @@
+extends /common/layout
+block head
+	title My Profile
+block content
+	div.marginTop10
+		ul.nav.nav-tabs
+			li.active
+				a(href='#exam', data-toggle='tab') 
+					b(style="color:#428BCA") Exam
+			li
+				a(href='#profile', data-toggle='tab') 
+					b(style="color:green") Profiles
+			if isAdmin
+				li
+					a(href='#admin', data-toggle='tab')
+						b(style="color:#A52A2A") Admin
+		div.tab-content
+			div#exam.tab-pane.fade.in.active
+				div.panel.panel-primary.marginTop10
+					div.panel-heading 
+						b Exam Tools
+					div.panel-body
+						div.row
+							div.col-sm-6.col-md-4.paddingUpDown
+								a(href="/user/createExam",data-toggle="tooltip",data-title="Create Exam")
+									table
+										tr
+											td
+												img.img-rounded(src="/img/createExam.png",alt="Create Exam")
+											td 
+												div 
+													b Create Exam
+													div.textDescription Create and Share Exams
+							div.col-sm-6.col-md-4.paddingUpDown
+								a(href="/user/myExamList",data-toggle="tooltip",data-title="My Exams")
+									table
+										tr
+											td
+												img.img-rounded(src="/img/myexams.png",alt="My Exams")
+											td 
+												div 
+													b My Exams
+													div.textDescription View and edit exams you created	
+
+			div#profile.tab-pane.fade profile tab
+			
+			if isAdmin
+				div#admin.tab-pane.fade 
+					if isAdmin														
+						div.panel.panel-primary.marginTop10
+							div.panel-heading 
+								b Admin
+							div.panel-body
+								div.row
+									div.col-sm-6.col-md-4.paddingUpDown
+										a(href="/admin/createCategory") Create Category
+									div.col-sm-6.col-md-4.paddingUpDown
+										a(href="/admin/createSubCategory") Create Sub Category	
+									div.col-sm-6.col-md-4.paddingUpDown
+										a(href="/admin/viewAllCategories") View Categories

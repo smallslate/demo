@@ -1,0 +1,47 @@
+extends /common/layout
+block head
+	script(src="/javascript/quiz/category.js")
+	script(src="/javascript/frameworks/jquery.validate.min.js")
+	title Create Sub Category
+block content
+	form.form-horizontal#createSubCategory(role="form" method="post" action="/admin/crudSubCategory")
+		input#subCategoryId(type="hidden",name="subCategoryId",value="#{subCategoryObj.subCategoryId}")
+		div.form-group
+			label.col-lg-2.control-label(for="subCategoryName") Sub Category Name
+			div.col-lg-10
+				input.form-control#subCategoryName(name="subCategoryName", value="#{subCategoryObj.subCategoryName}", placeholder="Enter Sub Category Name")
+		div.form-group
+			label.col-lg-2.control-label(for="categoryId") Select Category
+			div.col-lg-10
+				select.form-control#categoryId(name="categoryId")		
+					option(value="") ----Select---- 
+					each item in categories
+						if item.categoryId == subCategoryObj.categoryId
+							option(value=item.categoryId,selected="selected") #{item.categoryName}
+						else
+							option(value=item.categoryId) #{item.categoryName}
+		div.form-group
+				label.col-lg-2.control-label(for="subCategoryDescr") Description
+				div.col-lg-10
+					input.form-control#subCategoryDescr(name="subCategoryDescr", placeholder="Enter Sub Category Description", value="#{subCategoryObj.subCategoryDescr}")
+		div.form-group
+				label.col-lg-2.control-label(for="subCategoryImg") Image URL
+				div.col-lg-10
+					input.form-control#subCategoryImg(name="subCategoryImg", placeholder="850*275 Image URL", value="#{subCategoryObj.subCategoryImg}")
+		div.form-group
+			div.col-lg-offset-2.col-lg-10
+				button.btn.btn-primary(type="submit" name="action" value="save" onclick="return $('#createSubCategory').valid();" style="margin-right:10px;") Save	
+				if subCategoryObj.subCategoryId >0
+					button.btn.btn-danger(type="submit" name="action" value="delete" onclick="return $('#createSubCategory').valid();") Delete	
+	if subCategoryObj.error
+		div.alert.alert-danger #{subCategoryObj.error}
+	if subCategoryObj.success
+		div.alert.alert-success #{subCategoryObj.success}	
+	hr	
+	div.row
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/subCategory") Create Sub Category	
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/viewAllCategories") View Categories	
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/myProfile") My Profile

@@ -1,0 +1,22 @@
+div.horizontalLine.margin5
+	div.panel.panel-primary(ng-repeat="questionObj in quizObj.questionList")
+		div.panel-heading {{$index+1}}. {{questionObj.question}}
+		div.panel-body 
+			div(ng-if(questionObj.option1.length gt 0)) 
+				b Option 1 : 
+				span {{questionObj.option1}}
+			div(ng-if(questionObj.option2.length gt 0)) 
+				b Option 2 : 
+				span {{questionObj.option2}}
+			div(ng-if(questionObj.option3.length gt 0)) 
+				b Option 3 : 
+				span {{questionObj.option3}}
+			div(ng-if(questionObj.option4.length gt 0)) 
+				b Option 4 : 
+				span {{questionObj.option4}}
+			div(ng-if(questionObj.option5.length gt 0)) 
+				b Option 5 : 
+				span {{questionObj.option5}}												
+
+	
+					

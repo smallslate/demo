@@ -1,0 +1,28 @@
+form.form-horizontal#addQuestionForm(role="form")
+	div.form-group
+		label.col-sm-2.control-label Question Type
+		div.col-sm-10
+			select.form-control(name="questionType",data-ng-model="quizObj.questionObj.questionType",ng-change="addNewQuestion(quizObj.questionObj.questionType)")
+				option(value="MOSA") Multiple Options - Single Answer
+				option(value="MOMA") Multiple Options - Multiple Answers
+				option(value="TORF") True / False
+				option(value="ET") Essay Type / Short Answer
+	div(ng-if="quizObj.questionObj.questionType=='MOSA'")
+		include /user/createExam/mosaQuestionForm
+	div(ng-if="quizObj.questionObj.questionType=='MOMA'")
+		include /user/createExam/momaQuestionForm
+	div(ng-if="quizObj.questionObj.questionType=='TORF'")
+		include /user/createExam/torfQuestionForm
+	div(ng-if="quizObj.questionObj.questionType=='ET'")
+		include /user/createExam/etQuestionForm
+	div.form-group
+		div.col-sm-offset-2.col-sm-10
+			button.btn.btn-default.marginRight10(type="submit",ng-click = "closeQuestionForm();") Cancel
+			button.btn.btn-primary.marginRight10(type="submit",ng-click="saveQuestionForm('create');",ng-if="!quizObj.questionObj.questionId") Save
+			button.btn.btn-primary.marginRight10(ng-click="saveQuestionForm('update')",ng-if="quizObj.questionObj.questionId>0") Update
+			
+div.alert.alert-danger(ng-if="quizObj.questionObj.error") {{quizObj.questionObj.error}}
+div.alert.alert-success(ng-if="quizObj.questionObj.success") {{quizObj.questionObj.success}}
+
+	
+					

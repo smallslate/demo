@@ -1,0 +1,44 @@
+extends /common/layout
+block head
+	script(src="/javascript/quiz/category.js")
+	script(src="/javascript/frameworks/jquery.validate.min.js")
+	title Create Category
+block content
+	form.form-horizontal.marginTop10#createCategory(role="form" method="post" action="/admin/crudCategory")
+		input#categoryId(type="hidden",name="categoryId" value="#{categoryObj.categoryId}")
+		div.form-group
+			label.col-lg-2.control-label(for="categoryName") Category Name
+			div.col-lg-10
+				input.form-control#categoryName(name="categoryName" placeholder="Enter Category Name" value="#{categoryObj.categoryName}")
+		div.form-group
+				label.col-lg-2.control-label(for="categoryDescr") Category Description
+				div.col-lg-10
+					textarea.form-control#categoryDescr(name="categoryDescr",placeholder="Enter Category Description") #{categoryObj.categoryDescr}
+		div.form-group
+				label.col-lg-2.control-label(for="categoryImg") Category Image URL
+				div.col-lg-10
+					input.form-control#categoryImg(name="categoryImg" value="#{categoryObj.categoryImg}" placeholder="850*275 Image URL")
+		div.form-group
+				label.col-lg-2.control-label(for="categoryCode") Category Code
+				div.col-lg-10
+					input.form-control#categoryCode(name="categoryCode" value="#{categoryObj.categoryCode}" placeholder="Category Code")					
+		div.form-group
+				div.col-lg-offset-2.col-lg-10
+					if categoryObj.categoryId ==''
+						button.btn.btn-primary.marginRight10(type="submit"  name="action" value="create" onclick="return $('#createCategory').valid();") Save	
+					if categoryObj.categoryId > 0
+						button.btn.btn-primary.marginRight10(type="submit"  name="action" value="update" onclick="return $('#createCategory').valid();") Update
+						button.btn.btn-danger(type="submit" name="action" value="delete") Delete	
+	if categoryObj.error
+		div.alert.alert-danger #{categoryObj.error}
+	if categoryObj.success
+		div.alert.alert-success #{categoryObj.success}
+	div.row.horizontalLine
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/admin/createCategory") Create Category
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/category") Create Sub Category			
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/viewAllCategories") View Categories	
+		div.col-sm-4.col-md-2		
+			a.marginRightLeft10(href="/user/myProfile") My Profile		

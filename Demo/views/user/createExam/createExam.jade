@@ -1,0 +1,93 @@
+extends /common/layout
+block head
+	script(src="/javascript/frameworks/angular/angular.min.js")
+	script(src="/javascript/frameworks/angular/angular-resource.min.js")
+	script(src="/javascript/quiz/createExam/app.js")
+	script(src="/javascript/quiz/createExam/controllers.js")
+	script(src="/javascript/quiz/quiz/quizServices.js")
+	script(src="/javascript/quiz/createExam/services.js")
+	script(src="/javascript/quiz/quiz/quizDirectives.js")
+	script(src="/javascript/frameworks/jquery/jquery.validate.min.js")
+	script(src="/javascript/frameworks/ckeditor/ckeditor.js")
+	title Create And Edit Exam
+block content
+	div.marginTop10(ng-app="createExam")
+		ul.nav.nav-tabs#createExamTab
+			li.active
+				a(href="#examDetails" data-toggle="tab") 
+					b 1. Add Exam Details
+			li
+				a(href="#examQuestions" data-toggle="tab") 
+					b 2. Add Questions
+			li
+				a(href="#publishExam" data-toggle="tab") 
+					b 3. Publish Exam
+					
+		div.tab-content.marginTop10#createExamTabContent(ng-controller="createExamCtrl")
+			div.tab-pane#examDetails.active
+				include /user/createExam/examDetailsForm
+			div.tab-pane#examQuestions
+				div(ng-if="!isShowAddQuestion")
+					button.btn.btn-success.marginRight10(type="button",ng-click="addNewQuestion('MOSA');") Add New Question
+				div.alert.alert-info.marginTop10(ng-if="(!quizObj.questionList || quizObj.questionList.length<1) && !isShowAddQuestion") 
+					b Oops ... They are no questions added. Click here to add question to your exam
+				div(ng-if="isShowAddQuestion")
+					include /user/createExam/addQuestionForm
+				include /user/createExam/listQuestions	
+			div.tab-pane#publishExam
+				p publish exam
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				

@@ -1,0 +1,43 @@
+form.form-horizontal#examDetailsForm(role="form")
+
+	div.form-group
+		label.col-lg-2.control-label Exam Name
+			p.showHideEditor Show Rich Editor
+				input(type="checkbox",ng-model="quizObj.quizNameIsRich") 
+		div.col-lg-10(ng-show="!quizObj.quizNameIsRich ||quizObj.quizNameIsRich == 'false'")
+			textarea.form-control(name="quizName",placeholder="Enter Exam Name",ng-model="quizObj.quizName")
+		div.col-lg-10(ng-show="quizObj.quizNameIsRich|| quizObj.quizNameIsRich == 'true'")
+			textarea.form-control(name="quizName",placeholder="Enter Exam Name",ng-model="quizObj.quizName",ck-editor=100)
+	div.form-group
+		label.col-lg-2.control-label Description
+			p.showHideEditor Show Rich Editor
+				input(type="checkbox",ng-model="quizObj.quizDescrIsRich") 
+		div.col-lg-10(ng-show="!quizObj.quizDescrIsRich || quizObj.quizDescrIsRich == 'false'")
+			textarea.form-control(name="quizDescr",placeholder="Enter Exam Description",data-ng-model="quizObj.quizDescr")	
+		div.col-lg-10(ng-show="quizObj.quizDescrIsRich || quizObj.quizDescrIsRich == 'true'")
+			textarea.form-control(name="quizDescr",placeholder="Enter Exam Description",data-ng-model="quizObj.quizDescr",ck-editor=200)				
+	div.form-group
+		label.col-lg-2.control-label Category
+		div.col-lg-10
+			select.form-control(name="categoryId",ng-model="quizObj.categoryId",ng-options="categoryObj.categoryId as categoryObj.categoryName for categoryObj in categoryList",ng-change="getSubCategoryList()")
+				option(value="") -- Select Category --	
+	div.form-group
+		label.col-lg-2.control-label Sub Category
+		div.col-lg-10
+			select.form-control(name="subCategoryId",ng-model="quizObj.subCategoryId",ng-options="subCategoryObj.subCategoryId as subCategoryObj.subCategoryName for subCategoryObj in subCategoryList",ng-disabled="!quizObj.categoryId>0")
+				option(value="") -- Select Sub Category --	
+					
+	div.form-group
+		label.col-lg-2.control-label Exam Logo (Image URL)
+		div.col-lg-10
+			input.form-control(name="quizImgUrl",placeholder="Image URL",data-ng-model="quizObj.quizImgUrl")	
+			div.form-group
+			
+	div.form-group		
+		div.col-lg-offset-2.col-lg-10
+			button.btn.btn-primary.margin5(ng-click="saveQuizDetails('create')",ng-if="!quizObj.quizId") Save	
+			button.btn.btn-primary.margin5(ng-click="saveQuizDetails('update')",ng-if="quizObj.quizId>0") Update
+			button.btn.btn-primary.margin5(ng-click="saveQuizDetails('addQuestions')",ng-if="quizObj.quizId>0") Add Questions
+			
+div.alert.alert-danger(ng-if="quizObj.error") {{quizObj.error}}
+div.alert.alert-success(ng-if="quizObj.success") {{quizObj.success}}
