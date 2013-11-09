@@ -36,9 +36,9 @@ CREATE TABLE smallslate.subcategory (
   CREATE TABLE quizdetails (
   quizId BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   quizName MEDIUMTEXT NOT NULL,
-  quizNameIsRich VARCHAR(5) NOT NULL DEFAULT 'false',
+  quizNameIsRich varchar(1) NOT NULL DEFAULT 'F',
   quizDescr MEDIUMTEXT NULL,
-  quizDescrIsRich VARCHAR(5) NOT NULL DEFAULT 'false',
+  quizDescrIsRich varchar(1) NOT NULL DEFAULT 'F',
   categoryId BIGINT NOT NULL,
   subCategoryId BIGINT NOT NULL,
   quizImgUrl VARCHAR(1000) NULL,

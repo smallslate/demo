@@ -1,15 +1,1 @@
-create exam details
------------------------------------------------------
-1.Add option icon
-2.validation passes when only spaces are given
-3.sql injection
-4.UpdatedTime is not updated when details are updated
 
-add questions
-------------------------------------------------------
-1.Validations are missing
-
-
-categories
-------------------------------------------------------
-1.updateCategory sql injection

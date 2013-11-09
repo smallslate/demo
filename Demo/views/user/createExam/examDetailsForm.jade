@@ -3,18 +3,18 @@ form.form-horizontal#examDetailsForm(role="form")
 	div.form-group
 		label.col-lg-2.control-label Exam Name
 			p.showHideEditor Show Rich Editor
-				input(type="checkbox",ng-model="quizObj.quizNameIsRich") 
-		div.col-lg-10(ng-show="!quizObj.quizNameIsRich ||quizObj.quizNameIsRich == 'false'")
+				input(type="checkbox",ng-model="quizObj.quizNameIsRich",ng-true-value="T",ng-false-value="F") 
+		div.col-lg-10(ng-show="!quizObj.quizNameIsRich ||quizObj.quizNameIsRich == 'F'")
 			textarea.form-control(name="quizName",placeholder="Enter Exam Name",ng-model="quizObj.quizName")
-		div.col-lg-10(ng-show="quizObj.quizNameIsRich|| quizObj.quizNameIsRich == 'true'")
+		div.col-lg-10(ng-show="quizObj.quizNameIsRich|| quizObj.quizNameIsRich == 'T'")
 			textarea.form-control(name="quizName",placeholder="Enter Exam Name",ng-model="quizObj.quizName",ck-editor=100)
 	div.form-group
 		label.col-lg-2.control-label Description
 			p.showHideEditor Show Rich Editor
-				input(type="checkbox",ng-model="quizObj.quizDescrIsRich") 
-		div.col-lg-10(ng-show="!quizObj.quizDescrIsRich || quizObj.quizDescrIsRich == 'false'")
+				input(type="checkbox",ng-model="quizObj.quizDescrIsRich",ng-true-value="T",ng-false-value="F") 
+		div.col-lg-10(ng-show="!quizObj.quizDescrIsRich || quizObj.quizDescrIsRich == 'F'")
 			textarea.form-control(name="quizDescr",placeholder="Enter Exam Description",data-ng-model="quizObj.quizDescr")	
-		div.col-lg-10(ng-show="quizObj.quizDescrIsRich || quizObj.quizDescrIsRich == 'true'")
+		div.col-lg-10(ng-show="quizObj.quizDescrIsRich || quizObj.quizDescrIsRich == 'T'")
 			textarea.form-control(name="quizDescr",placeholder="Enter Exam Description",data-ng-model="quizObj.quizDescr",ck-editor=200)				
 	div.form-group
 		label.col-lg-2.control-label Category

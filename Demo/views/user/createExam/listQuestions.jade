@@ -1,22 +1,33 @@
 div.horizontalLine.margin5
-	div.panel.panel-primary(ng-repeat="questionObj in quizObj.questionList")
-		div.panel-heading {{$index+1}}. {{questionObj.question}}
+	div.panel.panel-success(ng-repeat="questionObj in quizObj.questionList")
+		div.panel-heading 
+			b {{$index+1}}. {{questionObj.question}}
 		div.panel-body 
-			div(ng-if(questionObj.option1.length gt 0)) 
+			div(ng-if="questionObj.option1.length>0 && questionObj.option1!='undefined'") 
 				b Option 1 : 
-				span {{questionObj.option1}}
-			div(ng-if(questionObj.option2.length gt 0)) 
+				span {{questionObj.option1}} 
+			div(ng-if="questionObj.option2.length>0 && questionObj.option2!='undefined'") 
 				b Option 2 : 
 				span {{questionObj.option2}}
-			div(ng-if(questionObj.option3.length gt 0)) 
+			div(ng-if="questionObj.option3.length>0 && questionObj.option3!='undefined'") 
 				b Option 3 : 
 				span {{questionObj.option3}}
-			div(ng-if(questionObj.option4.length gt 0)) 
-				b Option 4 : 
+			div(ng-if="questionObj.option4.length>0 && questionObj.option4!='undefined'") 
+				b Option 4 :
 				span {{questionObj.option4}}
-			div(ng-if(questionObj.option5.length gt 0)) 
+			div(ng-if="questionObj.option5.length>0 && questionObj.option5!='undefined'")
 				b Option 5 : 
-				span {{questionObj.option5}}												
-
+				span {{questionObj.option5}}								
+			div(ng-if="questionObj.answer.length>0 && questionObj.answer!='undefined'")
+				b Answer : 
+				span {{questionObj.answer}}
+			div(ng-if="questionObj.answerDescr.length>0 && questionObj.answerDescr!='undefined'")
+				b Answer Description : 
+				span {{questionObj.answerDescr}}
+			div(ng-if="questionObj.difficultyLevel!='undefined'")
+				b Difficulty Level : 
+				span(ng-if="questionObj.difficultyLevel==0") Easy	
+				span(ng-if="questionObj.difficultyLevel==1") Medium	
+				span(ng-if="questionObj.difficultyLevel==2") Hard	
 	
 					

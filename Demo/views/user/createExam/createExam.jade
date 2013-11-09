@@ -27,8 +27,14 @@ block content
 			div.tab-pane#examDetails.active
 				include /user/createExam/examDetailsForm
 			div.tab-pane#examQuestions
-				div(ng-if="!isShowAddQuestion")
-					button.btn.btn-success.marginRight10(type="button",ng-click="addNewQuestion('MOSA');") Add New Question
+				div
+					button.btn.btn-primary.marginRight10(type="button",ng-click="addNewQuestion('MOSA');") Add New Question
+					span(ng-show="quizObj.questionList.length>0")
+						b.margin5 OR
+						select.margin5.form-control(style="display:inline-block!important;width:150px;",ng-change="editQuestion()",data-ng-model="questionNumberForEdit")
+							option(value=0) Select to edit
+							option(value="{{$index+1}}",ng-repeat="questionObj in quizObj.questionList") Question {{$index+1}}
+							
 				div.alert.alert-info.marginTop10(ng-if="(!quizObj.questionList || quizObj.questionList.length<1) && !isShowAddQuestion") 
 					b Oops ... They are no questions added. Click here to add question to your exam
 				div(ng-if="isShowAddQuestion")

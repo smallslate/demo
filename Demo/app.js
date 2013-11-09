@@ -51,16 +51,7 @@ passport.use(new GoogleStrategy({
   function(identifier, profile, done) {
     process.nextTick(function () {
       if(profile) {
-    	  routes.findOrCreate(profile.emails[0].value,profile.name.givenName,profile.name.familyName,function(err,result){
-    		  if(err) {
-    			  profile.identifier = null;
-    	          return done(null, null);
-    		  } else {
-    			  profile.identifier = identifier;
-    			  profile.myUserId =result.userId;
-                  return done(null, profile);
-    		  }
-    	  });
+    	  return done(null, profile);
       }	else {
     	  profile.identifier = null;
           return done(null, null);

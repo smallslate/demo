@@ -5,7 +5,7 @@ angular.module('createExam.controllers', []).
                                 function($scope,$window,categories,subCategories,createExamService,createQuestionService,editExamService) {
 	  
 	  $scope.categoryList = categories.query();
-	  
+	  $scope.questionNumberForEdit =0;
 	  var examId = getURLParameter('examid');
 	  if(examId && examId>0) {
 		  $scope.quizObj = editExamService.getExamDetailsForEdit({examId:examId},function(data){
@@ -36,6 +36,7 @@ angular.module('createExam.controllers', []).
 			  if(action =='addQuestions') {
 				  $('#createExamTab a[href="#examQuestions"]').tab('show');
 			  }
+			  $scope.questionNumberForEdit =0;
 		  }
 	  };
 	  
@@ -53,10 +54,24 @@ angular.module('createExam.controllers', []).
 			  $scope.quizObj.questionObj.option4IsRich = false;
 			  $scope.quizObj.questionObj.option5IsRich = false;
 			  $scope.quizObj.questionObj.options=[{option:"",optionIsRich:false},{option:"",optionIsRich:false}];
+			  $scope.questionNumberForEdit =0;
 		  } else {
 			  alert("Please add exam details before adding questions");
 			  $('#createExamTab a[href="#examDetails"]').tab('show');
 		  }
+	  };
+	  
+	  $scope.editQuestion = function() {
+		  if($scope.questionNumberForEdit >0) {
+			  $scope.isShowAddQuestion =true;
+			  if(!$scope.quizObj.questionObj) {
+				  $scope.quizObj.questionObj = new Object();
+			  }
+			  $scope.quizObj.questionObj = $scope.quizObj.questionList[$scope.questionNumberForEdit-1];
+		  } else {
+			  $scope.isShowAddQuestion =false;
+		  }
+		  
 	  };
 	  
 	  $scope.saveQuestionForm = function(action) {
@@ -77,12 +92,14 @@ angular.module('createExam.controllers', []).
 			  var editedQuizObj = $scope.quizObj;
 			  delete editedQuizObj.questionList;
 			  $scope.quizObj = createQuestionService.saveQuestionDetails(editedQuizObj);
+			  $scope.questionNumberForEdit =0;
 		  }
 	  };
 	  
 	  $scope.closeQuestionForm = function() {
 		  if(confirm("Are you sure you want to cancel? All data you have entered will be lost !")) {
 			  $scope.isShowAddQuestion =false;  
+			  $scope.questionNumberForEdit =0;
 		  }
 	  };
 	  
